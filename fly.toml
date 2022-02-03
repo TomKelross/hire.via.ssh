@@ -1,0 +1,17 @@
+# fly.toml file generated for hire-tom-via-ssh on 2022-02-03T23:15:23Z
+
+app = "hire-tom-via-ssh"
+
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[env]
+  PORT = "23234"
+
+[[services]]
+  internal_port = 23234
+  protocol = "tcp"
+
+  [[services.ports]]
+    port = "22"

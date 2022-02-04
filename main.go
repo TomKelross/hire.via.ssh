@@ -10,7 +10,6 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
-	"time"
 
 	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
@@ -65,8 +64,7 @@ func main() {
 
 	<-done
 	log.Println("Stopping SSH server")
-	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
-	defer func() { cancel() }()
+	ctx := context.Background()
 	if err := s.Shutdown(ctx); err != nil {
 		log.Fatalln(err)
 	}
@@ -170,7 +168,6 @@ func (m model) View() string {
 
 		Just type in the password I gave you below.
 
-		TODO: Add input box for password ;)
 		`
 		banner_rendered, err := glamour.Render(banner, "dark")
 		if err != nil {
